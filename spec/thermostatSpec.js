@@ -21,6 +21,15 @@ describe("Thermostat", function() {
       };
       expect(function() { thermostat.up() }).toThrowError("Max temperature is 25 degrees");
     });
+    it('does not increase beyond 32 when powersavemode is off', function() {
+      thermostat.switchmode();
+      expect(thermostat.powersavemode).toEqual(false);
+      for (var i = 1; i < 13; i++) {
+        thermostat.up();
+      };
+      expect(function() { thermostat.up() }).toThrowError("Max temperature is 32 degrees");
+    });
+
   });
 
    describe('#down', function() {
@@ -45,6 +54,37 @@ describe("Thermostat", function() {
     it('when called, power save mode switches to false', function() {
       thermostat.switchmode();
       expect(thermostat.powersavemode).toEqual(false);
+    });
+  });
+
+  describe('#reset', function() {
+    it('resets temp to initialise temp', function() {
+      for (var i = 1; i < 11; i++) {
+        thermostat.down();
+      };
+      expect(thermostat.temperature).toEqual(10);
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
+
+  describe('#energyusage', function() {
+    it('indicates that it is low', function() {
+      for (var i = 1; i < 4; i++) {
+        thermostat.down();
+      };
+      expect(thermostat.temperature).toEqual(17);
+      expect(thermostat.energyusage()).toEqual("Low-usage");
+    });
+    it('indicates that it is medium', function() {
+      expect(thermostat.energyusage()).toEqual("Medium-usage");
+    });
+    it('indicates that it is high', function() {
+      for (var i = 1; i < 6; i++) {
+        thermostat.up();
+      };
+      expect(thermostat.temperature).toEqual(25);
+      expect(thermostat.energyusage()).toEqual("High-usage");
     });
   });
 });

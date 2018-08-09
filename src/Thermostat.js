@@ -30,3 +30,19 @@ Thermostat.prototype.switchmode = function() {
     this.maxtemp = 25;
   }
 };
+
+Thermostat.prototype.reset = function() {
+  this.temperature = 20;
+};
+
+Thermostat.prototype.energyusage = function() {
+  if (this.temperature < 18) {
+    return "Low-usage"
+  }
+  else if (this.temperature < 25) {
+    return "Medium-usage"
+  }
+  else {
+    return "High-usage"
+  }
+};
