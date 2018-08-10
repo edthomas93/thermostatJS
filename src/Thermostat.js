@@ -28,6 +28,9 @@ Thermostat.prototype.switchmode = function() {
   else {
     this.powersavemode = true;
     this.maxtemp = 25;
+    if (this.temperature > this.maxtemp){
+      this.temperature = this.maxtemp;
+    }
   }
 };
 
@@ -44,5 +47,14 @@ Thermostat.prototype.energyusage = function() {
   }
   else {
     return "High-usage"
+  }
+};
+
+Thermostat.prototype.psm = function() {
+  if (this.powersavemode === true) {
+    return "On";
+  }
+  else {
+    return "Off";
   }
 };

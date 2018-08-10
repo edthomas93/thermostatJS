@@ -55,6 +55,15 @@ describe("Thermostat", function() {
       thermostat.switchmode();
       expect(thermostat.powersavemode).toEqual(false);
     });
+    it('if temp over 25 and PSM switched to on, returns to 25', function() {
+      thermostat.switchmode();
+      for (var i = 1; i < 13; i++) {
+        thermostat.up();
+      };
+      expect(thermostat.temperature).toEqual(32);
+      thermostat.switchmode();
+      expect(thermostat.temperature).toEqual(25);
+    });
   });
 
   describe('#reset', function() {
@@ -85,6 +94,16 @@ describe("Thermostat", function() {
       };
       expect(thermostat.temperature).toEqual(25);
       expect(thermostat.energyusage()).toEqual("High-usage");
+    });
+  });
+
+  describe('#psm', function() {
+    it('returns on if energysavemode = true (default)', function() {
+      expect(thermostat.psm()).toEqual("On");
+    });
+    it('returns off if energysavemode = false', function() {
+      thermostat.switchmode();
+      expect(thermostat.psm()).toEqual("Off");
     });
   });
 });
