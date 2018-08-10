@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Thermostat</title>
+    <title>Feel Tha Heat</title>
     <script src="src/Thermostat.js"></script>
+    <style>
+    .button {
+        background-color: #45AF50;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 2px 2px;
+        cursor: pointer;
+        box-shadow: 5px 10px 8px #888888
+    }
+    h1 {
+        letter-spacing: 20px;
+    }
+    </style>
   </head>
   <body>
-    <center><h1>Thermostat</h1></center>
-      <center><button id="switchmode"><i class="fas fa-bolt"></i> Power Saver </button></center>
-      <center>Currently: <text id="psm"></text></center>
-      <br>
-      <h1><center><text id="temperature"></text>&#176;C</center></h1>
-      <center><button id="up"><i class="fas fa-sort-up"></i></button></center>
-      <center><button id="reset"><i class="fas fa-sync-alt"></i></button></center>
-      <center><button id="down"><i class="fas fa-sort-down"></i></button></center>
+    <center><h1>THERMOSTAT</h1></center>
+      <center><a id="switchmode" class="button"><text class="fas fa-bolt"> Power Saver </text></a></center>
+      <br><center>Currently: <text id="psm"></text></center></br>
+      <h2><center><text id="temperature"></text>&#176;C</center></h2>
+      <center><a id="up" class="button"><i class="fas fa-sort-up"></i></a></center>
+      <center><a id="reset" class="button"><i class="fas fa-sync-alt"></i></a></center>
+      <center><a id="down" class="button"><i class="fas fa-sort-down"></i></a></center>
       </br>
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
       <script src="./interface.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     </body>
     <section>
-      <center><h1>Current temperature: <span id="current-temperature"></span>&#176;C</h1></center>
+      <center><h2>Current temperature: <span id="current-temperature"></span>&#176;C</h2></center>
       <center><select id="current-city"></center>
         <option value="london">London</option>
         <option value="melbourne">Melbourne</option>
         <option value="barcelona">Barcelona</option>
-        <option value="tokyo">Tokyo</option>
+        <option value="new york">New York</option>
       </select>
     </section>
 </html>
